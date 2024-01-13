@@ -11,48 +11,51 @@ using namespace std;
 
 class Flow {
 public:
+    
+    template <typename T>
     class TITLE {
     public:
-        string titlu;
-        string subtitlu;
+        T titlu;
+        T subtitlu;
 
         TITLE() {}
-        TITLE(string& titlu, string& subtitlu) {
-            this->titlu = titlu;
-            this->subtitlu = subtitlu;
-        }
+        TITLE(T titlu, T subtitlu) : titlu(titlu), subtitlu(subtitlu) {}
     };
-    class TITLEDecorator : public TITLE {
+
+    
+    template <typename T>
+    class TITLEDecorator {
     protected:
-        TITLE* titleComponent;
+        TITLE<T>* titleComponent;
 
     public:
-        TITLEDecorator(TITLE* titleComponent) : titleComponent(titleComponent) {}
+        TITLEDecorator(TITLE<T>* titleComponent) : titleComponent(titleComponent) {}
 
-        virtual string getTitlu() {
+        virtual T getTitlu() {
             return titleComponent->titlu;
         }
 
-        virtual string getSubtitlu() {
+        virtual T getSubtitlu() {
             return titleComponent->subtitlu;
         }
     };
 
-    // Decorator-ului
-    class BasicTITLEDecorator : public TITLEDecorator {
+    
+    template <typename T>
+    class BasicTITLEDecorator : public TITLEDecorator<T> {
     public:
-        BasicTITLEDecorator(TITLE* titleComponent) : TITLEDecorator(titleComponent) {}
+        BasicTITLEDecorator(TITLE<T>* titleComponent) : TITLEDecorator<T>(titleComponent) {}
 
-        string getTitlu() override {
-
-            return TITLEDecorator::getTitlu();
+        T getTitlu() override {
+            return TITLEDecorator<T>::getTitlu();
         }
 
-        string getSubtitlu() override {
-
-            return TITLEDecorator::getSubtitlu();
+        T getSubtitlu() override {
+            return TITLEDecorator<T>::getSubtitlu();
         }
     };
+
+
 
     class TEXT {
     public:
@@ -154,7 +157,7 @@ public:
 
 public:
     static struct Flux {
-        TITLE* title;
+        TITLE<string>* title;
         TEXT* text;
         TEXT_INPUT* text_input;
         NUMBER_INPUT* number_input;
@@ -201,11 +204,11 @@ public:
                     getline(fin, linie);
                     // Pentru o performanta mai buna se anuleaza while ul si se restructureaza if-urile sa fie fara else.
                     if (linie.find("TITLE") != string::npos) {
-                        temp_flux->title = new TITLE();
+                        temp_flux->title = new Flow::TITLE<string>();   
                         getline(fin, linie);
-                        temp_flux->title->titlu = linie;
+                        temp_flux->title->titlu = linie;    
                         getline(fin, linie);
-                        temp_flux->title->subtitlu = linie;
+                        temp_flux->title->subtitlu = linie;  
                     }
                     else if (linie.find("TEXT") != string::npos) {
                         temp_flux->text = new TEXT();
@@ -777,7 +780,7 @@ public:
         }
 
         fin.close();
-
+       
         for (size_t i = 0; i < lines.size(); ++i) {
             if (lines[i].find("Flow-ul a fost rulat de :") != string::npos && lines[i].find(nume_flow) != string::npos) {
                 size_t pos = lines[i].find(":") + 1;
@@ -944,14 +947,6 @@ public:
                     cin >> nume_flow;
                     bool found = false;
 
-                    /*
-                        IDEE: A se cauta in fisier numele flow-ului.
-                        Daca flow-ul nu e gasit dupa nume, atunci se va reincerca introducerea numelui.
-                        (asta am vazut ca vrei sa incerci)
-
-                        * Se citeste fisierul linie cu linie si se cauta daca exista numele flow-ului.
-                        Daca numele nu e gasit, programul va intreba din nou pentru nume.
-                    */
                     string line;
                     ifstream fin("saved_flows.txt");
                     do {

@@ -63,9 +63,9 @@ camioane
 2.31  3  8.9  12.31  
 CALCULUS
 4 1 
-min
+*
 
- OUTPUT
+OUTPUT
 2
 fasf
 fsaf
@@ -74,58 +74,60 @@ fd
  END
 Wed Jan  3 13:54:45 2024
 
+Flow-ul a fost accesat de :4 ori
+Flow-ul a fost rulat de :0 ori
+}
+
+{
+fsa
+TITLU
+sad
+fsaf
+
+TEXT
+fsasa
+das
+
+TEXT_IMPUT
+dasd
+ca
+
+NUMBER_INPUT
+sad
+23 523 
+ END
+Sat Jan 13 20:48:21 2024
+
+Flow-ul a fost accesat de : 0 ori
+Flow-ul a fost rulat de : 0 ori
 }
 
 
+
+
+
+
 {
-fas
+test
+TITLU
+test
+test
+
+NUMBER_INPUT
+fsa
+12 32.432 
+CALCULUS
+3 
+*
+
+TEXT_FILE_INPUT
+txt
+eu
+
  END
-Wed Jan  3 13:55:41 2024
+Sat Jan 13 20:51:04 2024
 
 Flow-ul a fost accesat de :1 ori
-}
-
-
-
-{
-fasfdsad
-TEXT
-sdadas
-fdsaf
-
- END
-Thu Jan  4 12:40:35 2024
-
-Flow-ul a fost accesat de : 0 ori
-Flow-ul a fost rulat de : 0 ori
-}
-
-
-
-
-
-
-
-{
-saf
- END
-Fri Jan 12 17:14:31 2024
-
-Flow-ul a fost accesat de : 0 ori
-Flow-ul a fost rulat de : 0 ori
-}
-
-
-{
-asfbv
-TITLU
-dsad
-fsa
-
- END
-Sat Jan 13 11:43:08 2024
-
-Flow-ul a fost accesat de : 0 ori
 Flow-ul a fost rulat de : 0 ori
 }
 
